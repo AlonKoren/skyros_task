@@ -1,0 +1,41 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+    <title>Tic Tac Toe - Alon Koren</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+    .board {
+        margin: auto;
+        width: 350px;
+    }
+    .board button {
+        height: 100px;
+        width: 100px;
+        margin: 0px;
+        padding: 0px;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 3em;
+    }
+    .game-title {
+        font-size: 100px;
+        color: #2f67d7;
+        margin: 10px auto;
+    }
+    #messages {
+        font-size: 20px;
+        color: #2f67d7;
+    }
+</style>
+<h1 class="game-title">Tic Tac Toe </h1>
+<div class="board">
+    <button id="a0"></button> <button id="a1"></button> <button id="a2"></button>
+    <button id="b0"></button> <button id="b1"></button> <button id="b2"></button>
+    <button id="c0"></button> <button id="c1"></button> <button id="c2"></button>
+    <div id="messages">Waiting for the other player to join...</div>
+</div>
