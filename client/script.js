@@ -154,6 +154,42 @@ socket.on("move.made", function(data) {
     }
 });
 
+socket.on("room.join", function(data) {
+    if (data.status === "full") {
+        $("#fullMessage").text("Room is full, try another Room Id.");
+        $(".board").attr("hidden", true);
+        $("#room_form").attr("hidden", false);
+        $("#roomId").attr("hidden", true);
+        $(".board button").attr("disabled", true);
+    }
+    else if(data.status === "ready") // show board
+    {
+        $(".board").attr("hidden", false);
+        $("#room_form").attr("hidden", true);
+        $("#roomId").attr("hidden", false)
+            .text("Your Room ID is: "+data.room_id+"");
+        $("#fullMessage").text("");
+
+        $("#messages").text("Waiting for the other player to join...");
+        $(".board button").attr("disabled", true);
+        for (let i = 'a'; i <= 'c'; i++) {
+            for (let j = 0; j <= 2; j++) {
+                $("#" + i+j).text("");
+            }
+        }
+    }
+    else{
+        $("#messages").text("Waiting for the other player to join...");
+        $(".board button").attr("disabled", true);
+        for (let i = 'a'; i <= 'c'; i++) {
+            for (let j = 0; j <= 2; j++) {
+                $("#" + i+j).text("");
+            }
+        }
+
+    }
+});
+
 // Initialize the initial state of the board, when the game start.
 socket.on("game.begin", function(data) {
     isTie = false;
@@ -170,9 +206,31 @@ socket.on("game.begin", function(data) {
 socket.on("partner.left", function() {
     $("#messages").text("Your partner has left the game.");
     $(".board button").attr("disabled", true);
+    $(".board button").attr("hidden", true);
+    $("#return_homePage").attr("hidden", false);
+    $("#roomId").attr("hidden", true);
 });
+
+function returnHome(){
+    window.location.reload();
+}
 
 $(function() {
     $(".board button").attr("disabled", true);
     $(".board button").on("click", makeMove);
+
+    $("#room_form").submit(function(e) {
+        e.preventDefault();
+        const form = document.getElementById('room_form');
+        const elem_room_id = form.elements['room_id'];
+
+// getting the element's value
+        let room_id = elem_room_id.value;
+        console.log(room_id);
+
+        socket.emit("join.room", {
+            room_id: room_id
+        });
+
+    });
 });

@@ -1,0 +1,30 @@
+body {
+    text-align: center;
+}
+.board {
+    margin: auto;
+    width: 350px;
+}
+.board button {
+    height: 100px;
+    width: 100px;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 3em;
+}
+.game-title {
+    font-size: 100px;
+    color: #2f67d7;
+    margin: 10px auto;
+}
+#messages {
+    font-size: 20px;
+    color: #2f67d7;
+}
+#fullMessage {
+    font-size: 20px;
+    color: #2f67d7;
+}

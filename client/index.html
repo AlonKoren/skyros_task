@@ -2,40 +2,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <title>Tic Tac Toe - Alon Koren</title>
 </head>
-<style>
-    body {
-        text-align: center;
-    }
-    .board {
-        margin: auto;
-        width: 350px;
-    }
-    .board button {
-        height: 100px;
-        width: 100px;
-        margin: 0px;
-        padding: 0px;
-        float: left;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        font-size: 3em;
-    }
-    .game-title {
-        font-size: 100px;
-        color: #2f67d7;
-        margin: 10px auto;
-    }
-    #messages {
-        font-size: 20px;
-        color: #2f67d7;
-    }
-</style>
-<h1 class="game-title">Tic Tac Toe </h1>
-<div class="board">
-    <button id="a0"></button> <button id="a1"></button> <button id="a2"></button>
-    <button id="b0"></button> <button id="b1"></button> <button id="b2"></button>
-    <button id="c0"></button> <button id="c1"></button> <button id="c2"></button>
-    <div id="messages">Waiting for the other player to join...</div>
-</div>
+<body>
+    <h1 class="game-title">Tic Tac Toe </h1>
+    <div>
+        <form id="room_form">
+            <label for="room_id">Please enter a Room ID:</label>
+            <input type="text" id="room_id" name="room_id" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div id="roomId"></div><br>
+    <div class="board" hidden>
+        <button id="a0"></button> <button id="a1"></button> <button id="a2"></button>
+        <button id="b0"></button> <button id="b1"></button> <button id="b2"></button>
+        <button id="c0"></button> <button id="c1"></button> <button id="c2"></button>
+        <div id="messages">Waiting for the other player to join...</div>
+    </div>
+    <br>
+    <button id="return_homePage" hidden onclick="returnHome()">Return to the home page</button>
+    <div id="fullMessage"></div>
+</body>
+
